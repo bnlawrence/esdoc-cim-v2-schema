@@ -261,6 +261,31 @@ def text_blob_encoding():
     }
 
 
+def numeric():
+    """ 
+    A number which comes with a unit, potentially from a controlled vocabulary of units.
+    #FIXME: Need to work on the relationship between unit_source and base_unit.
+    """
+    return {
+        'type':'class',
+        'is_abstract':False,
+        'is_document':False,
+        'pstr':('{} {}',('value','units')),
+        'properties': [
+            ('value','float','1.1','Numerical value of number'),
+            ('units','str','1.1','Associated Units'),
+            ('unit_enumeration','str','0.1','Internal CIM vocabulay'),
+            ('unit_source','shared.online_resource','0.1','External vocabulary source'),
+            ('base_unit','str','0.1','type of unit in external vocubulary')
+        ],
+        'constraints': [
+             ('mutually_exclusive', ('unit_enumeration', 'unit_source'), '0.1'),
+             ()
+        ]      
+    }
+
+
+
 # def reference():
 #     """ An external citation target which can have a context associated with it. """
 #     return {
