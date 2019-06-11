@@ -86,7 +86,9 @@ def conformance():
                 "Summary of conformance status."),
             ('datasets', 'data.input_dataset', '0.N',
                 "The datasets (including any modifications made to them) used for conforming to the target requirement."),
-            #FIXME: Should this be a URI of the target numerical requirement, or a linked_to reference?
+            #FIXME: 
+            #Should this be a URI of the target numerical requirement, or a linked_to reference?
+            #Either the docstring, or the target type is wrong.
             ('target_requirement', 'designing.numerical_requirement', '1.1',
                 "URI of the target numerical requirement."),
             ('models', 'science.model', '1.N',
