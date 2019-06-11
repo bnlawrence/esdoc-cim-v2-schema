@@ -16,7 +16,7 @@ def doc_meta_info():
         'base': None,
         'is_abstract': False,
         'properties': [
-            ('author', 'shared.party', '0.1',
+            ('author', 'linked_to(shared.party)', '0.1',
                 "Author of the metadata in the parent document."),
             ('create_date', 'datetime', '1.1',
                 "Date upon which the instance was created."),
@@ -62,7 +62,7 @@ def doc_reference():
         'type': 'class',
         'base': None,
         'is_abstract': False,
-        'pstr': ('{}', ('canonical_name',)),
+        'pstr': ('{} ({})', ('canonical_name','type')),
         'properties': [
             ('canonical_name', 'str', '0.1',
                 "Canonical name given to document."),
