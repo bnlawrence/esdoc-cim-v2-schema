@@ -52,7 +52,7 @@ def compute_pool():
                 "Number of accelerator units on a node."),
             ('clock_cycle_concurrency', 'int', '0.1',
                  'The number of operations which can be carried out concurrently in a single clock cycle of a single core. E.g. 4.'),
-            ('clock_speed', 'float', '0.1',
+            ('clock_speed', 'shared.numeric', '0.1',
                  'The clock speed of a single core, in units of GHz. E.g. 3.6.'),
             ('compute_cores_per_node', 'int', '0.1',
                 "Number of CPU cores per node."),
@@ -60,9 +60,7 @@ def compute_pool():
                 "CPU type."),
             ('description', 'str', '0.1',
                 "Textural description of pool."),
-            ('interconnect', 'str', '0.1',
-                "Interconnect used."),
-            ('memory_per_node', 'platform.storage_volume', '0.1',
+            ('memory_per_node', 'shared.numeric', '0.1',
                 "Memory per node."),
             ('model_number', 'str', '0.1',
                 "Model/Board number/type."),
@@ -70,14 +68,29 @@ def compute_pool():
                 "Name of compute pool within a machine."),
             ('number_of_nodes', 'int', '0.1',
                 "Number of nodes."),
-            ('operating_system', 'str', '0.1',
-                "Operating system.")
         ],
         'derived': [
             ('total_cores', 'compute_cores_per_node * number_of_nodes'),
             ('total_memory', 'memory_per_node * number_of_nodes')
         ]
     }
+    
+def interconnect():
+    """ The interconnect used within a machine to joing nodes together"""
+    return {
+        'type': 'class',
+        'base': None,
+        'is_abstract': False,
+        'pstr': ('{}', ('name',)),
+        'properties': [
+            ('name', 'str', '0.1',
+                "Name of interconnnect."),
+            ('topology', 'str', '0.1',
+                'Interconnect topology'),
+            ('description', 'str', '0.1.',
+                'Technical description of interconnect layout'),
+            ]
+            }
 
 
 def machine():
@@ -107,6 +120,8 @@ def partition():
         'properties': [
             ('compute_pools', 'platform.compute_pool', '1.N',
                 "Layout of compute nodes."),
+            ('interconnect', 'platform.interconnect', '0.1', 
+                "Interconnect used."),
             ('description', 'str', '0.1',
                 "Textural description of machine."),
             ('institution', 'linked_to(shared.party)', '1.1',
@@ -117,24 +132,27 @@ def partition():
                 "Name of partition (or machine)."),
             ('online_documentation', 'shared.online_resource', '0.N',
                 "Links to documentation."),
+            ('operating_system', 'str', '0.1',
+                "Operating system."),
             ('partition', 'platform.partition', '0.N',
                 "If machine is partitioned, treat subpartitions as machines."),
             ('storage_pools', 'platform.storage_pool', '0.N',
                 "Storage resource available."),
             ('vendor', 'linked_to(shared.party)', '0.1',
                 "The system integrator or vendor."),
-            ('when_used', 'time.time_period', '0.1',
+            ('when_available', 'time.time_period', '0.1',
                 "If no longer in use, the time period it was in use.")
         ]
     }
 
 def performance():
-    """Describes the properties of a performance of a configured model on
-a particular system/machine.
+    """
+    Describes the properties of a performance of a configured model on
+    a particular system/machine.
 
-Based on "CPMIP: Measurements of Real Computational Performance of
-Earth System Models" (Balaji et. al. 2016, doi:10.5194/gmd-2016-197,
-http://www.geosci-model-dev-discuss.net/gmd-2016-197/)
+    Based on "CPMIP: Measurements of Real Computational Performance of
+    Earth System Models" (Balaji et. al. 2016, doi:10.5194/gmd-2016-197,
+    http://www.geosci-model-dev-discuss.net/gmd-2016-197/)
 
     """
     return {
@@ -204,10 +222,11 @@ def storage_pool():
             ('type', 'platform.storage_systems', '0.1',
                 "Type of storage."),
             ('vendor', 'linked_to(shared.party)', '0.1',
-                "Vendor of storage hardware.")
+                "Vendor of storage hardware."),
+            ('file_system_sizes','shared.numeric','1.N','Sizes of constituent File Systems')
+            
         ]
     }
-
 
 def storage_systems():
     """Controlled vocabulary for storage  types (including filesystems).
@@ -228,42 +247,5 @@ def storage_systems():
             ("Tape - MASS", "Tape storage system using Met Office MASS"),
             ("Tape - Castor", "Tape storage sytsem using CERN Castor"),
             ("Tape - Other", "Other tape based system")
-        ]
-    }
-
-
-def storage_volume():
-    """Platform storage volume and units.
-
-    """
-    return {
-        'type': 'class',
-        'base': None,
-        'is_abstract': False,
-        'pstr': ('{} {}', ('volume', 'units')),
-        'properties': [
-            ('units', 'platform.volume_units', '1.1',
-                "Volume units."),
-            ('volume', 'int', '1.1',
-                "Numeric value.")
-        ]
-    }
-
-
-def volume_units():
-    """Appropriate storage volume units.
-
-    """
-    return {
-        'type': 'enum',
-        'is_open': False,
-        'members': [
-            ("GB", "Gigabytes (1000^3)"),
-            ("TB", "Terabytes (1000^4)"),
-            ("PB", "Petabytes (1000^5)"),
-            ("EB", "Exabytes (1000^6)"),
-            ("TiB", "Tebibytes (1024^4)"),
-            ("PiB", "Pebibytes (1024^5)"),
-            ("EiB", "Exbibytes (1024^6)")
         ]
     }
