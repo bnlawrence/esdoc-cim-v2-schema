@@ -19,7 +19,7 @@ http://www.geosci-model-dev-discuss.net/gmd-2016-197/)
         'base': 'platform.performance',
         'is_abstract': False,
         'properties': [
-            ('component', 'software.software_component', '1.1',
+            ('component', 'linked_to(software.software_component)', '1.1',
              "Link to a CIM software component description."),
         ],
         'constraints': [
@@ -166,13 +166,13 @@ def performance():
                 "Name for performance (experiment/test/whatever)."),
 
             # CPMIP model and platform
-            ('model', 'science.model', '1.1',
+            ('model', 'linked_to(science.model)', '1.1',
                 "Model for which performance was tested."),
             ('resolution', 'int', '0.1',
                  'Resolution measured as the number of gridpoints (or more generally, spatial degrees of freedom) NX x NY x NZ per component with an independent discretization'),
             ('complexity', 'int', '0.1',
                  'Complexity measured as the number of prognostic variables per component with an independent discretization'),
-            ('platform', 'platform.machine', '1.1',
+            ('platform', 'linked_to(platform.machine)', '1.1',
                  'Platform on which performance was tested.'),
             ('compiler', 'str', '0.1',
                 "Compiler used for performance test."),
@@ -200,7 +200,7 @@ def performance():
                  'Data intensity the amount of data produced per compute-hour, in units GB per compute-hour.'),
 
             # Subcomponent performance
-            ('subcomponent_performance', 'platform.component_performance', '0.N',
+            ('subcomponent_performance', 'linked_to(platform.component_performance)', '0.N',
                 "Describes the performance of each subcomponent.")
         ]
     }
