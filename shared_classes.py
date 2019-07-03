@@ -280,7 +280,6 @@ def numeric():
         ],
         'constraints': [
              ('mutually_exclusive', ('unit_enumeration', 'unit_source'), '0.1'),
-             ()
         ]      
     }
 
