@@ -100,7 +100,7 @@ def topic():
         'type': 'class',
         'base': None,
         'is_abstract': False,
-        'pstr': ('{}', ('short_name',)),
+        'pstr': ('{}', ('name',)),
         'properties': [
             ('citations', 'shared.citation', '0.N',
                 "Set of pertinent citations."),
