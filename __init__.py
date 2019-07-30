@@ -19,6 +19,9 @@ from . import shared_classes
 from . import shared_classes_doc
 from . import software_classes
 from . import software_enums
+from . import cmip_classes
+from . import iso_classes
+from . import iso_enums
 from . import time as time_classes
 
 
@@ -26,7 +29,7 @@ from . import time as time_classes
 NAME = 'cim'
 
 # Ontology version.
-VERSION = '2.0.40'
+VERSION = '2.1.0'
 
 # Ontology doc string.
 DOC = 'ESDOC CIM ontology schema - version 2'
@@ -40,6 +43,13 @@ def activity():
         activity_classes
     }
 
+
+def cmip():
+    """ Extensions for CMIP6.
+    """
+    return {
+        cmip_classes
+    }
 
 def data():
     """Types that describe output that climate models emit.
@@ -65,6 +75,15 @@ def drs():
     """
     return {
         drs_entities
+    }
+
+
+def iso():
+    """ Types that implement ISO classes used in other packages
+    """
+    return {
+        iso_classes,
+        iso_enums
     }
 
 

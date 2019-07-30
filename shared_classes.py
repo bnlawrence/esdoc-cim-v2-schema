@@ -65,7 +65,7 @@ def citation():
 
 def extra_attribute():
     """An extra attribute with key and value needed to encode further information
-    not in the CIM2 domain model or specialisation. Typical use case: in parsing
+    not in the CIM domain model or specialisation. Typical use case: in parsing
     data and encoding attributes found in data.
 
     """
@@ -222,7 +222,7 @@ def responsibility():
 
 def role_code():
     """Responsibility role codes: roles that a party may play in delivering a responsibility.
-
+    This is an extension and modification of CI_RoleCode from ISO19115.
     """
     return {
         'type': 'enum',
@@ -283,35 +283,3 @@ def numeric():
         ]      
     }
 
-
-
-# def reference():
-#     """ An external citation target which can have a context associated with it. """
-#     return {
-#         'type': 'class',
-#         'base': None,
-#         'is_abstract': False,
-#         'properties': [
-#             ('document', 'shared.citation_target', '1.1', 'Reference Target'),
-#             ('context', 'shared.text_blob', '0.1', 'Brief text description of why this resource is being cited'),
-#         ],
-#     }
-
-
-# def citation_target():
-#     """ A real world document, could be a book, a journal article, a manual, a web page ... it might or might
-#     not be online, although preferably it would be."""
-#     return {
-#         'type': 'class',
-#         'base': None,
-#         'is_abstract': False,
-#         'is_document': True,
-#         'pstr': ('%s', ('name', )),
-#         'properties': [
-#             ('title', 'str', '1.1', 'Title or name of the document'),
-#             ('name', 'str', '1.1', 'A name for the citation: short hand description, e.g. Meehl et al (2014)'),
-#             ('citation_detail', 'str', '0.1', 'Complete citation string as would appear in a bibliography.'),
-#             ('online_at', 'shared.online_resource', '0.1', 'Location of electronic version'),
-#             ('doi', 'str', '0.1', 'Digital Object Identifier, if it exists.')
-#         ]
-#     }

@@ -85,13 +85,13 @@ def forcing_constraint():
                 "Category to which this belongs (from a CV, e.g. GASES)."),
             ('code', 'str', '0.1',
                 "Programme wide code from a controlled vocabulary (e.g. N2O)."),
-            ('data_link', 'data.dataset', '0.1',
+            ('data_link', 'linked_to(data.dataset)', '0.1',
                 "A data record used by the forcing "),
             ('forcing_type', 'designing.forcing_types', '1.1',
                 "Type of integration."),
             ('group', 'str', '0.1',
                 "Sub-Category (e.g. GHG)."),
-            ('origin', 'shared.citation', '0.1',
+            ('origin', 'linked_to(shared.citation)', '0.1',
                 "Pointer to origin, e.g. CMIP6 RCP database.")
         ],
         'constraints': [
@@ -127,9 +127,9 @@ def initialisation_requirement():
         'properties': [
             ('branch_time_in_initialisation_source', 'time.date_time', '0.1',
                 "If appropriate,  the time in the initialisation_source (whether observed or simulated)."),
-            ('initialise_from_data', 'data.dataset', '0.1',
+            ('initialise_from_data', 'linked_to(data.dataset)', '0.1',
                 "Initialisation should use this primary dataset."),
-            ('initialise_from_experiment', 'designing.numerical_experiment', '0.1',
+            ('initialise_from_experiment', 'linked_to(designing.numerical_experiment)', '0.1',
                 "This experiment should be initialised from the output of this experiment.")
         ],
         'constraints': [

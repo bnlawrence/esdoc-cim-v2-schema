@@ -37,7 +37,7 @@ def model():
                 "Software components which are linked together using a coupler to deliver this model."),
             ('coupler', 'software.coupling_framework', '0.1',
                 "Overarching coupling framework for model."),
-            ('internal_software_components', 'software.software_component', '0.N',
+            ('internal_software_components', 'linked_to(software.software_component)', '0.N',
                 "Software modules which together provide the functionality for this model."),
         ]
     }
@@ -102,7 +102,7 @@ def topic():
         'is_abstract': False,
         'pstr': ('{}', ('name',)),
         'properties': [
-            ('citations', 'shared.citation', '0.N',
+            ('citations', 'linked_to(shared.citation)', '0.N',
                 "Set of pertinent citations."),
             ('description', 'str', '0.1',
                 "A description (derived from specialization)."),
