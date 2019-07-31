@@ -177,7 +177,10 @@ def numerical_experiment():
             ('required_period', 'linked_to(designing.temporal_constraint)', '1.1',
                 "Constraint on start date and duration."),
             ('requirements', 'linked_to(designing.numerical_requirement)', '0.N',
-                "Additional requirements that conformant simulations need to satisfy.")
+                "Additional requirements that conformant simulations need to satisfy."),
+            #FIXME: if objectives become standalone, the strings should become linked_to(designing.objective).
+            ('related_objectives', 'str', '0.N',
+                "Set of objective identifiers (which should appear within the related experiments)")
         ],
         'constraints': [
             ('cardinality', 'duration', '0.0'),
@@ -289,11 +292,18 @@ def objective():
         'type': 'class',
         'base': None,
         'is_abstract': False,
+        'is_document': False,
         'properties': [
             ('name','str','1.1','Name of this objective'),
             ('description','str','0.1',' Short summary of the objective'),
             ('required_outputs', 'data.variable_collection', '0.N',
-             'Set of required outputs associated with this objective')
+                'Set of required outputs associated with this objective'),
+            # FIXME: Identifier woudl not be needed if a document, and that
+            # would have the added advantage of "variable collection" updates as
+            # necessary. However, we wouldn't need them if we had standalone
+            # variable collections. This is as yet slightly messy.
+            ('identifier','str','0.1',
+                'Provides a hook to which experiments can link')
         ]
     }
 
