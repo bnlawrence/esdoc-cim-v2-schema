@@ -67,6 +67,8 @@ def axis_member():
                 "If parameter varied, value thereof for this member."),
             ('conformance', 'linked_to(activity.conformance)', '0.1',
                 "Conformance document for the target requirement that defines this member, if any."),
+            ('axis','linked_to(activity.ensemble_axis)','1.1',
+                'The parent axis of this ensemble member')
         ]
     }
 
@@ -164,8 +166,11 @@ def ensemble_axis():
         'type': 'class',
         'base': None,
         'is_abstract': False,
-        'pstr': ('{}', ('axis',)),
+        'is_document': True,
+        'pstr': ('{}', ('name',)),
         'properties': [
+            ('name','str','1.1',
+                'Short handle/name for the axis'),
             ('extra_detail', 'str', '0.1',
                 "Any extra detail required to describe how this ensemble axis was delivered."),
             ('member', 'activity.axis_member', '1.N',
@@ -177,29 +182,6 @@ def ensemble_axis():
         ]
     }
 
-
-def ensemble_member():
-    """An ensemble may be a complicated interplay of axes, for example, r/i/p, not all of which
-    are populated, so we need a list of the actual simulations and how they map onto the ensemble
-    axes.
-
-    """
-    return {
-        'type': 'class',
-        'base': None,
-        'is_abstract': False,
-        'pstr': ('{}', ('simulation',)),
-        'properties': [
-            ('errata', 'shared.online_resource', '0.1',
-                "Link to errata associated with this simulation."),
-            ('had_performance', 'linked_to(platform.performance)', '0.1',
-                "Performance of the simulation."),
-            ('ran_on', 'linked_to(platform.machine)', '0.1',
-                "The machine on which the simulation was run."),
-            ('simulation', 'linked_to(activity.simulation)', '1.1',
-                "Actual simulation description for an ensemble member. The variant id is in the simuluation document.")
-        ]
-    }
 
 
 def child_simulation():
@@ -230,6 +212,12 @@ def simulation():
     were run and wny.
     """
 
+    axisinfo = """ Identification within ensemble axes via axis member. 
+    (Multiple axis members within a simulation cannot share the same ensemble_axis.)
+    (There must be an axis_member instance for each ensemble axis in a parent ensemble.)
+    """
+
+
     return {
         'type': 'class',
         'base': 'activity.activity',
@@ -250,6 +238,14 @@ def simulation():
             ('parent_of', 'linked_to(activity.child_simulation)', '0.N',
                 'If appropriate, links to simulations which branched from this one'),
             ('produced', 'linked_to(data.dataset)','0.N','Products of the simulation'),
+            ('had_performance', 'linked_to(platform.performance)', '0.1',
+             "Performance of the simulation."),
+            ('ran_on', 'linked_to(platform.machine)', '0.1',
+             "The machine on which the simulation was run."),
+            ('errata', 'shared.online_resource', '0.1',
+             "Link to errata associated with this simulation."),
+            ('ensemble_id','activity.axis_member', '0.N', axisinfo),
+
 
             # Time
             ('start_time', 'time.date_time', '0.1',
@@ -260,7 +256,7 @@ def simulation():
                 'The calendar used in the simulation'),
 
             # Further Info URL
-            ('further_info_url', 'shared.online_resource', '0.1',
+            ('documentation', 'shared.online_resource', '0.1',
                 'On-line location of additional documentation'),
 
             # Extra attributes
