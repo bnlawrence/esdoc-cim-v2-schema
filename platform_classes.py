@@ -229,12 +229,12 @@ def storage_pool():
     }
 
 def storage_systems():
-    """Controlled vocabulary for storage  types (including filesystems).
+    """Controlled vocabulary for storage types (including filesystems).
 
     """
     return {
         'type': 'enum',
-        'is_open': False,
+        'is_open': True,
         'members': [
             ("Lustre", "Lustre parallel file system"),
             ("GPFS", "IBM GPFS (also known as IBM Spectral Scale"),
