@@ -43,24 +43,24 @@ def process_step():
     Representation of the ISO19115 LE_ProcessStep and parent LI_ProcessStep classes.
     """
 
-    processor_doc = """Individual or organisation responsible for the process step.
-    Use roleCode='processor'. Contact information is not necessary.
-    """
-
     return {
         'type': 'class',
         'base': None,
         'is_abstract': False,
         'is_document': False,
-        'pstr': ('{}', ('name',)),
+        'pstr': ('{}', ('description',)),
         'properties': [
             ('description','str','1.1',
                 'General description of the events in the development of the resource.'),
             ('rationale', 'str', '0.1',
                 'Purpose for performing the process on the resource'),
-            ('dateTime', 'time.date_time', '0.1',
+            ('execution_date_time', 'time.date_time', '0.1',
                 'The date and time when the process was completed.'),
-            ('processor', 'shared.responsibility', '0.1', processor_doc),
+            ('processor', 'shared.responsibility', '0.1',
+                """Individual or organisation responsible for the process step.
+                Use roleCode='processor'. Contact information is not necessary.
+                """
+             ),
             ('reference', 'linked_to(shared.citation)', '0.N',
                 'Process step documentation'),
             ('source', 'linked_to(data.dataset)', '0.N',

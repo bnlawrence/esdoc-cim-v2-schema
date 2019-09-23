@@ -292,16 +292,12 @@ def objective():
         'type': 'class',
         'base': None,
         'is_abstract': False,
-        'is_document': False,
+        'is_document': True,
         'properties': [
             ('name','str','1.1','Name of this objective'),
             ('description','str','0.1',' Short summary of the objective'),
             ('required_outputs', 'data.variable_collection', '0.N',
                 'Set of required outputs associated with this objective'),
-            # FIXME: Identifier woudl not be needed if a document, and that
-            # would have the added advantage of "variable collection" updates as
-            # necessary. However, we wouldn't need them if we had standalone
-            # variable collections. This is as yet slightly messy.
             ('identifier','str','0.1',
                 'Provides a hook to which experiments can link')
         ]
@@ -318,7 +314,7 @@ def project():
         'base': 'activity.activity',
         'is_abstract': False,
         'properties': [
-            ('homepage', 'str', '0.1',
+            ('homepage', 'shared.online_resource', '0.1',
                 "Project homepage."),
             ('objectives', 'linked_to(designing.objective)', '0.N',
                 "Project objectives."),

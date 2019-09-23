@@ -140,14 +140,14 @@ def ensemble():
                 "Representative model performance across ensemble."),
             ('documentation', 'shared.online_resource', '0.N',
                 "Links to web-pages and other ensemble specific documentation (including workflow descriptions)."),
-            ('ensemble_axes', 'activity.ensemble_axis', '0.N',
+            ('ensemble_axes', 'linked_to(activity.ensemble_axis)', '0.N',
                 "Set of axes for the ensemble."),
-            ('members', 'activity.ensemble_member', '1.N',
-                "The set of ensemble members."),
             ('uber_ensembles', 'linked_to(activity.uber_ensemble)', '0.N',
                 "Link to one or more over-arching ensembles that might includes this one."),
             ('experiments', 'linked_to(designing.numerical_experiment)', '1.N',
-                "Experiments with which the ensemble is associated (may differ from constituent simulations).")
+                "Experiments with which the ensemble is associated (may differ from constituent simulations)."),
+            ('members', 'linked_to(activity.simulation)', '0.N',
+                'Simulations within ensemble (should only be zero while ensemble is being defined)')
         ],
         'constraints': [
             ('cardinality', 'rationale', '0.0'),
@@ -173,8 +173,8 @@ def ensemble_axis():
                 'Short handle/name for the axis'),
             ('extra_detail', 'str', '0.1',
                 "Any extra detail required to describe how this ensemble axis was delivered."),
-            ('member', 'activity.axis_member', '1.N',
-                "Individual member descriptions along axis."),
+            ('members', 'activity.axis_member', '0.N',
+                "Individual member descriptions along axis. 0.N cardinality is only acceptable during design"),
             ('short_identifier', 'str', '1.1',
                 "e.g. 'r', 'i', 'p' or 'f' to conform with simulation ensemble variant identifiers."),
             ('target_requirement', 'linked_to(designing.numerical_requirement)', '0.1',
@@ -212,16 +212,12 @@ def simulation():
     were run and wny.
     """
 
-    axisinfo = """ Identification within ensemble axes via axis member. 
-    (Multiple axis members within a simulation cannot share the same ensemble_axis.)
-    (There must be an axis_member instance for each ensemble axis in a parent ensemble.)
-    """
-
-
     return {
         'type': 'class',
-        'base': 'activity.activity',
+        'base': 'iso.process_step',
         'is_abstract': False,
+        'is_document': True,
+        'pstr': ('({}/{}/{})',('used','ran_for_experiments','ensemble_id')),
         'properties': [
             ('part_of_project', 'linked_to(designing.project)', '1.N',
                 'Project or projects for which simulation was run'),
@@ -244,8 +240,12 @@ def simulation():
              "The machine on which the simulation was run."),
             ('errata', 'shared.online_resource', '0.1',
              "Link to errata associated with this simulation."),
-            ('ensemble_id','activity.axis_member', '0.N', axisinfo),
-
+            ('ensemble_id','activity.axis_member', '0.N',
+                """ Identification within ensemble axes via axis member. 
+                 (Multiple axis members within a simulation cannot share the same ensemble_axis.)
+                 (There must be an axis_member instance for each ensemble axis in a parent ensemble.)
+                 """
+             ),
 
             # Time
             ('start_time', 'time.date_time', '0.1',
