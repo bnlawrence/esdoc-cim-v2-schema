@@ -14,10 +14,10 @@ def ds_initiative_typecode():
             ('mission', 'specific operation of a data collection system'),
             ('sensor', 'device or piece of equipment which detects or records'),
             ('operation', 'action that is part of a series of actions'),
-            ('platform','vehicle or other support base that holds a sensor'),
-            ('process',' method of doing something involving a number of steps'),
+            ('platform', 'vehicle or other support base that holds a sensor'),
+            ('process', ' method of doing something involving a number of steps'),
             ('program', 'specific planned activity'),
-            ('project','organized undertaking, research, or development'),
+            ('project', 'organized undertaking, research, or development'),
             ('study', 'examination or investigation'),
             ('task', 'piece of work'),
             ('trial', 'process of testing to discover or demonstrate something'),
@@ -31,8 +31,8 @@ def md_cellgeometry_code():
         'type': 'enum',
         'is_open': False,
         'members': [
-            ('point','each cell represents a point'),
-            ('area','each cell represents an area')
+            ('point', 'each cell represents a point'),
+            ('area', 'each cell represents an area')
         ]
     }
 

@@ -29,7 +29,7 @@ def model_types():
             ("ML Inference", "Model is trained from data"),
             ("Re-Analysis", "Model includes active data-assimilation beyond initialisation"),
             ("Planetary", "Non-Earth model"),
-            ("ProcessC", "Specific process or parameterisation in column mode"),
+            ("Process", "Specific process or parameterisation in column mode"),
             ("Other", "A numerical model not covered above"),
         ]
     }
