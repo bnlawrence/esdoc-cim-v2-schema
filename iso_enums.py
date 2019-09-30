@@ -53,3 +53,16 @@ def md_progress_code():
         ]
 
     }
+
+
+def dq_evaluation_result_type():
+    """ Classifier of evaluation results"""
+    return {
+        'type': 'enum',
+        'is_open': False,
+        'members': [
+            ('plot', 'Diagnostic plot, use mime-type to identify what kind of image format is used'),
+            ('document', 'Document of some form, use mime-type to identify if PDF etc'),
+            ('dataset', 'Expect a binary target, accessible via a landing page or directly')
+        ]
+    }

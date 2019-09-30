@@ -148,3 +148,74 @@ def algorithm():
                 'Formal documentation for the algorithm used.')
         ]
     }
+
+
+def quality_report():
+    """ """
+    return {
+        'type': 'class',
+        'base': None,
+        'is_abstract': False,
+        'is_document': True,
+        'properties': [
+            ('target','shared.online_resource','1.1','Document about to which this quality report applies'),
+            ('issues','iso.quality_issue','0.N','Issues with this resource'),
+            ('reports','iso.quality_evaluation_result','0.N','Reports against quality measures for this resource')
+        ]
+    }
+
+
+def quality_issue():
+    """ A description of some scientific quality issue known about a resource described
+    by this ontology. E.g. if a model is known to have a particular problem, or there
+    has been a problem found with a dataset. Expect that most such detail should be
+    managed in an external (and formal) issue tracker. """
+
+    return {
+        'type': 'class',
+        'base': None,
+        'is_abstract': False,
+        'properties': [
+            ('summary','str','1.1','Brief (one-line) description of issue'),
+            ('reporter','linked_to(shared.party)','0.1','Person or entity responsible for reporting/describing issue'),
+            ('description','str','0.1','Description of issue'),
+            ('tracked_issue','shared.online_resource','0.1','Issue as lodged in an external issue tracker'),
+        ]
+    }
+
+
+def quality_evaluation_result():
+    """ The output of some quality evaluation against a specific measure for evaluation quality.
+    This flattens several ISO classes, including DQ_Result, DQ_ConformanceResult, DQ_QuantativeResult,
+    DQ_Element.
+    """
+
+    return {
+        'type': 'class',
+        'base': None,
+        'is_abstract': False,
+        'properties': [
+            ('name', 'str', '1.1', 'Name of measure being evaluated'),
+            ('evaluation_procedure', 'str', '0.1', 'Brief description of the evaluation method'),
+            ('specification', 'linked_to(shared.citation)', '0.1', 'Formal specification of the evaluation method'),
+            ('evaluator','linked_to(shared.party)','0.1','Person or entity reesponsible for evaluation'),
+            ('date', 'time.date_time', '0.1', 'Date of quality evaluation'),
+            ('summary_result', 'str', '0.1', 'Summary description of evaluation outcome'),
+            ('passed', 'bool', '0.1', 'Success or failure of the evaluation, if boolean concept is appropriate'),
+            ('results', 'iso.quality_evaluation_output', '0.N',
+                'Evaluation outputs, including log files, plots, or datasets'),
+            ]
+    }
+
+
+def quality_evaluation_output():
+    """ A specific evaluation output
+    """
+    return {
+        'type': 'class',
+        'base': 'shared.online_resource',
+        'is_abstract': False,
+        'properties': [
+            ('output_type','iso.dq_evaluation_result_type','1.1','Type of evaluation resource')
+            ]
+    }
