@@ -160,7 +160,9 @@ def party():
 
 def quality_review():
     """Assertions as to the completeness and quality of a document.
-
+    Not to be confused with assertions as to the quality of the resource described
+    by the document (as covered by the iso.quality_report).
+    A future version of this ontology may rename this class.
     """
     return {
         'type': 'class',
