@@ -38,6 +38,7 @@ def programming_language():
             ("Fortran", "Fortran Programming Language"),
             ("C", "C Programmming Language"),
             ("C++", "C++ Programming Language"),
-            ("Python", "Python Programming Language")
+            ("Julia", "Julia Programming Language"),
+            ("Python", "Python Programming Language"),
         ]
     }
