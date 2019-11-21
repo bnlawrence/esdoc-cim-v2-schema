@@ -5,6 +5,8 @@
    :synopsis: Set of CIM v2 ontology type definitions.
 
 """
+
+
 def model():
     """A model component: can be executed standalone, and has as
     scientific description available via a link to a science.domain
@@ -14,7 +16,6 @@ def model():
     """
     return {
         'type': 'class',
-        # TODO: review whether science.topic works better.
         'base': 'software.component_base',
         'is_abstract': False,
         'is_document': True,
@@ -171,3 +172,5 @@ def topic_property():
                 "User value(s)."),
         ]
     }
+
+

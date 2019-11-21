@@ -36,7 +36,7 @@ def programming_language():
         'is_open': True,
         'members': [
             ("Fortran", "Fortran Programming Language"),
-            ("C", "C Programmming Language"),
+            ("C", "C Programming Language"),
             ("C++", "C++ Programming Language"),
             ("Julia", "Julia Programming Language"),
             ("Python", "Python Programming Language"),
