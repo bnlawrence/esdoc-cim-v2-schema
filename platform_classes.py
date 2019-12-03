@@ -39,6 +39,8 @@ def compute_pool():
                 "Number of nodes."),
             ('vendor', 'shared.party', '0.1',
                 'Supplier of compute hardware in this pool'),
+            ('network_cards_per_node','platform.nic','0.N',
+                'Available network interfaces on node'),
         ],
         'derived': [
             ('total_cores', 'compute_cores_per_node * number_of_nodes'),
@@ -65,6 +67,22 @@ def interconnect():
                 'Supplier of the interconnect')
             ]
             }
+
+
+def nic():
+    """ Network Interface Card"""
+    return {
+        'type': 'class',
+        'base': None,
+        'is_abstract': False,
+        'pstr': ('{}', ('name',)),
+        'properties': [
+            ('name','str','1.1','Name of interface card'),
+            ('vendor','shared.party','0.1','Vendor of network card'),
+            ('bandwidth','shared.numeric','1.1','Bandwidth to network'),
+
+        ]
+    }
 
 
 def machine():
