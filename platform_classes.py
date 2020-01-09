@@ -13,7 +13,7 @@ def compute_pool():
         'type': 'class',
         'base': None,
         'is_abstract': False,
-        'pstr': ('{}', ('name',)),
+        'pstr': ('{} [{}]', ('name','number_of_nodes')),
         'properties': [
             ('accelerator_type', 'str', '0.1',
                 "Type of accelerator."),
@@ -93,6 +93,7 @@ def machine():
         'type': 'class',
         'base': 'platform.partition',
         'is_abstract': False,
+        'pstr': ('{}', ('name',)),
         'is_document': True,
         'properties': [
 
@@ -207,7 +208,7 @@ def storage_pool():
         'type': 'class',
         'base': None,
         'is_abstract': False,
-        'pstr': ('{}', ('name',)),
+        'pstr': ('{} {}', ('name', 'file_system_sizes')),
         'properties': [
             ('description', 'str', '0.1',
                 "Description of the technology used."),
@@ -218,9 +219,9 @@ def storage_pool():
             ('vendor', 'linked_to(shared.party)', '0.1',
                 "Vendor of storage hardware."),
             ('file_system_sizes','shared.numeric','1.N','Sizes of constituent File Systems')
-            
-        ]
+        ],
     }
+
 
 def storage_systems():
     """Controlled vocabulary for storage types (including filesystems).
