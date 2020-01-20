@@ -2,7 +2,8 @@
 
 """
 .. module:: shared_classes_doc.py
-   :synopsis: Set of CIM v2 ontology type definitions.
+   :synopsis: Set of CIM v2 ontology type definitions
+   which provide underlying infrastructure for document metadata and linking.
 
 """
 

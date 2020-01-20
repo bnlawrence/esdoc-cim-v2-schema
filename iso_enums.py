@@ -1,3 +1,13 @@
+# -*- coding: utf-8 -*-
+
+"""
+.. module:: iso_enums.py
+   :synopsis: Set of CIM v2 ontology type definitions.
+   for ISO Enumerations.
+
+"""
+
+
 def ds_initiative_typecode():
     """ Classifier of initiative, to inform ISO19115 metadata.
      Formally a DS_InitiativeTypeCode, from ISO19115_2011."""

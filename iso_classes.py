@@ -1,4 +1,9 @@
+# -*- coding: utf-8 -*-
+
 """
+.. module:: iso_classes.py
+   :synopsis: Set of CIM v2 ontology type definitions.
+   applying to the description of CMIP6 Data Reference Syntax quantities.
 
 This package is based on DQ_Lineage (ISO19115-2) as documented at
 http://wiki.esipfed.org/index.php/File:LI_Lineage-2.png.

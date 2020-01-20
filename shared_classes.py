@@ -2,7 +2,9 @@
 
 """
 .. module:: shared_classes.py
-   :synopsis: Set of CIM v2 ontology type definitions.
+   :synopsis: Set of CIM v2 ontology type definitions
+   which are used to describe attributes of many of
+   the other classes.
 
 """
 

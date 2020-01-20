@@ -2,6 +2,10 @@
 
 """
 .. module:: platform_classes.py
+   :synopsis: Set of CIM v2 ontology type definitions.
+   applying to the description of computers and the
+   performance of code running on those computers. of
+
 """
 
 

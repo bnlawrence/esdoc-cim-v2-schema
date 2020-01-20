@@ -2,7 +2,8 @@
 
 """
 .. module:: science_classes.py
-   :synopsis: Set of CIM v2 ontology type definitions.
+   :synopsis: Set of CIM v2 ontology type definitions
+   pertaining to the description of the scientific capabilities of models
 
 """
 
