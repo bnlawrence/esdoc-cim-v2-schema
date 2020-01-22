@@ -122,7 +122,7 @@ def topic():
                 "Quality control status of topic."),
             ('responsible_parties', 'shared.responsibility', '0.N',
                 "People or organisations responsible for providing this information."),
-            ('specialization_id', 'str', '1.1',
+            ('specialization_id', 'str', '0.1',
                 "Specialization identifier (derived from specialization)."),
             ('sub_topics', 'science.topic', '0.N',
                 "Discrete sub-topic with details.")
@@ -147,7 +147,7 @@ def topic_property_set():
                 "Set of associated specialized properties."),
             ('name', 'str', '0.1',
                 "A short-name / key (derived from specialization)."),
-            ('specialization_id', 'str', '1.1',
+            ('specialization_id', 'str', '0.1',
                 "Specialization identifier (derived from specialization)."),
         ]
     }
@@ -167,7 +167,7 @@ def topic_property():
                 "User friendly description (derived from specialization)."),
             ('name', 'str', '0.1',
                 "A short-name / key (derived from specialization)."),
-            ('specialization_id', 'str', '1.1',
+            ('specialization_id', 'str', '0.1',
                 "Specialization identifier (derived from specialization)."),
             ('values', 'str', '1.N',
                 "User value(s)."),
