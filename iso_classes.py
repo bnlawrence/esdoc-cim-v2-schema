@@ -81,15 +81,14 @@ def process_step():
 def processing():
     """
     Representation of the ISO19115 LE_Processing class
-
-    # Note that the algorithm definition has been adjusted to be more generic
-    # and less "instrument obsessed" than ISO19115. Name is an extension, and
-    # the identifier is simply a code string (id) ... but given there may be
-    # no identifier space for this processing step, it is made optional, rather
-    # than mandatory as in ISO. For export to ISO, the recommendation is to
-    # use the identifier of the CIM document which uses this class.
-
+    Note that the algorithm definition has been adjusted to be more generic
+    and less "instrument obsessed" than ISO19115. Name is an extension, and
+    the identifier is simply a code string (id) ... but given there may be
+    no identifier space for this processing step, it is made optional, rather
+    than mandatory as in ISO. For export to ISO, the recommendation is to
+    use the identifier of the CIM document which uses this class.
     """
+
     return {
         'type': 'class',
         'base': None,
