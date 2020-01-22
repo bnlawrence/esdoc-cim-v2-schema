@@ -100,7 +100,10 @@ def machine():
         'pstr': ('{}', ('name',)),
         'is_document': True,
         'properties': [
-
+            ('peak_performance', 'shared.numeric', '0.1',
+                'Total peak performance (RPeak in Top500 lingo)'),
+            ('linpack_performance', 'shared.numeric', '0.1',
+                'Linpack performance (RMax in Top500 lingo)')
         ]
     }
 
