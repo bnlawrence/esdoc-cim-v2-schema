@@ -2,39 +2,8 @@
 
 """
 .. module:: platform_classes.py
-   :synopsis: Set of CIM v2 ontology type definitions.
-
 """
 
-def component_performance():
-    """Describes the simulation rate of a model component.
-
-Based on "CPMIP: Measurements of Real Computational Performance of
-Earth System Models" (Balaji et. al. 2016, doi:10.5194/gmd-2016-197,
-http://www.geosci-model-dev-discuss.net/gmd-2016-197/)
-
-    """
-    return {
-        'type': 'class',
-        'base': 'platform.performance',
-        'is_abstract': False,
-        'properties': [
-            ('component', 'linked_to(software.software_component)', '1.1',
-             "Link to a CIM software component description."),
-        ],
-        'constraints': [
-            ('cardinality', 'model', '0.0'),
-            ('cardinality', 'resolution', '0.0'),
-            ('cardinality', 'complexity', '0.0'),
-            ('cardinality', 'platform', '0.0'),
-            ('cardinality', 'compiler', '0.0'),
-            ('cardinality', 'joules_per_simulated_year', '0.0'),
-            ('cardinality', 'coupling_cost', '0.0'),
-            ('cardinality', 'memory_bloat', '0.0'),
-            ('cardinality', 'data_output_cost', '0.0'),
-            ('cardinality', 'data_instensity', '0.0'),
-        ],
-    }
 
 def compute_pool():
     """Homogeneous pool of nodes within a computing machine.
@@ -68,13 +37,18 @@ def compute_pool():
                 "Name of compute pool within a machine."),
             ('number_of_nodes', 'int', '0.1',
                 "Number of nodes."),
+            ('vendor', 'shared.party', '0.1',
+                'Supplier of compute hardware in this pool'),
+            ('network_cards_per_node','platform.nic','0.N',
+                'Available network interfaces on node'),
         ],
         'derived': [
             ('total_cores', 'compute_cores_per_node * number_of_nodes'),
             ('total_memory', 'memory_per_node * number_of_nodes')
         ]
     }
-    
+
+
 def interconnect():
     """ The interconnect used within a machine to joing nodes together"""
     return {
@@ -89,8 +63,26 @@ def interconnect():
                 'Interconnect topology'),
             ('description', 'str', '0.1.',
                 'Technical description of interconnect layout'),
+            ('vendor', 'shared.party', '0.1',
+                'Supplier of the interconnect')
             ]
             }
+
+
+def nic():
+    """ Network Interface Card"""
+    return {
+        'type': 'class',
+        'base': None,
+        'is_abstract': False,
+        'pstr': ('{}', ('name',)),
+        'properties': [
+            ('name','str','1.1','Name of interface card'),
+            ('vendor','shared.party','0.1','Vendor of network card'),
+            ('bandwidth','shared.numeric','1.1','Bandwidth to network'),
+
+        ]
+    }
 
 
 def machine():
@@ -144,6 +136,7 @@ def partition():
                 "If no longer in use, the time period it was in use.")
         ]
     }
+
 
 def performance():
     """
@@ -200,10 +193,11 @@ def performance():
                  'Data intensity the amount of data produced per compute-hour, in units GB per compute-hour.'),
 
             # Subcomponent performance
-            ('subcomponent_performance', 'linked_to(platform.component_performance)', '0.N',
+            ('subcomponent_performance', 'linked_to(platform.performance)', '0.N',
                 "Describes the performance of each subcomponent.")
         ]
     }
+
 
 def storage_pool():
     """Homogeneous storage pool on a computing machine.
@@ -229,12 +223,12 @@ def storage_pool():
     }
 
 def storage_systems():
-    """Controlled vocabulary for storage  types (including filesystems).
+    """Controlled vocabulary for storage types (including filesystems).
 
     """
     return {
         'type': 'enum',
-        'is_open': False,
+        'is_open': True,
         'members': [
             ("Lustre", "Lustre parallel file system"),
             ("GPFS", "IBM GPFS (also known as IBM Spectral Scale"),

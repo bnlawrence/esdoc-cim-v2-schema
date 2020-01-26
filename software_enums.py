@@ -13,7 +13,7 @@ def coupling_framework():
     """
     return {
         'type': 'enum',
-        'is_open': False,
+        'is_open': True,
         'members': [
             ("OASIS", "The OASIS coupler - prior to OASIS-MCT"),
             ("OASIS3-MCT", "The MCT variant of the OASIS coupler"),
@@ -33,11 +33,12 @@ def programming_language():
     """
     return {
         'type': 'enum',
-        'is_open': False,
+        'is_open': True,
         'members': [
             ("Fortran", "Fortran Programming Language"),
-            ("C", "C Programmming Language"),
+            ("C", "C Programming Language"),
             ("C++", "C++ Programming Language"),
-            ("Python", "Python Programming Language")
+            ("Julia", "Julia Programming Language"),
+            ("Python", "Python Programming Language"),
         ]
     }

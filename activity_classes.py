@@ -112,7 +112,7 @@ def conformance_type():
     """
     return {
         'type': 'enum',
-        'is_open': True,
+        'is_open': False,
         'members': [
             ("Conformed", "Simulation (or ensemble) conformed to requirement"),
             ("Partially Conformed", "Simulation (or ensemble) partially conformed to requirement - details in description"),

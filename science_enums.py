@@ -8,7 +8,7 @@
 
 
 def model_types():
-    """Defines a set of gross model classes.
+    """Defines a set of model types relevant to weather, climate, and earth system modelling.
 
     """
     return {
@@ -18,12 +18,18 @@ def model_types():
             ("Atm Only", "Atmosphere Only"),
             ("Ocean Only", "Ocean Only"),
             ("Regional", "Regional Model"),
-            ("ESM", "Earth System Model (Atmosphere, Ocean, Land, Sea-ice and cycles)"),
+            ("ESM", "Earth System Model (Atmosphere, Ocean, Land, carbon cycle)"),
             ("GCM", "Global Climate Model (Atmosphere, Ocean, no carbon cycle)"),
             ("IGCM", "Intermediate Complexity GCM"),
             ("GCM-MLO", "GCM with mixed layer ocean"),
             ("Mesoscale", "Mesoscale Model"),
-            ("Process", "Limited Area process model"),
-            ("Planetary", "Non-Earth model")
+            ("ProcessLA", "Limited Area process model"),
+            ("DynamicalCore", "Dynamical Core only"),
+            ("Statistical", "Derived from statistics"),
+            ("ML Inference", "Model is trained from data"),
+            ("Re-Analysis", "Model includes active data-assimilation beyond initialisation"),
+            ("Planetary", "Non-Earth model"),
+            ("Process", "Specific process or parameterisation in column mode"),
+            ("Other", "A numerical model not covered above"),
         ]
     }
