@@ -2,7 +2,8 @@
 
 """
 .. module:: activity_classes.py
-   :synopsis: Set of CIM v2 ontology type definitions.
+   :synopsis: Set of CIM v2 ontology type definitions
+   which describe actions within an ES-DOC workflow.
 
 """
 

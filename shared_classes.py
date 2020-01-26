@@ -2,7 +2,9 @@
 
 """
 .. module:: shared_classes.py
-   :synopsis: Set of CIM v2 ontology type definitions.
+   :synopsis: Set of CIM v2 ontology type definitions
+   which are used to describe attributes of many of
+   the other classes.
 
 """
 
@@ -272,13 +274,13 @@ def numeric():
         'type':'class',
         'is_abstract':False,
         'is_document':False,
-        'pstr':('{} {}',('value','units')),
+        'pstr': ('{}{}', ('value', 'units')),
         'properties': [
-            ('value','float','1.1','Numerical value of number'),
-            ('units','str','1.1','Associated Units'),
-            ('unit_enumeration','str','0.1','Internal CIM vocabulay'),
-            ('unit_source','shared.online_resource','0.1','External vocabulary source'),
-            ('base_unit','str','0.1','type of unit in external vocubulary')
+            ('value', 'float', '1.1', 'Numerical value of number'),
+            ('units', 'str', '1.1', 'Associated Units'),
+            ('unit_enumeration', 'str', '0.1', 'Internal CIM vocabulary'),
+            ('unit_source', 'shared.online_resource', '0.1', 'External vocabulary source'),
+            ('base_unit', 'str', '0.1', 'type of unit in external vocabulary')
         ],
         'constraints': [
              ('mutually_exclusive', ('unit_enumeration', 'unit_source'), '0.1'),

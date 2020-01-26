@@ -3,6 +3,7 @@
 """
 .. module:: software_enums.py
    :synopsis: Set of CIM v2 ontology type definitions.
+   necessary to enumerate characteristics of software.
 
 """
 

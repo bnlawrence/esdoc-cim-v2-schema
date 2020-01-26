@@ -1,3 +1,12 @@
+"""
+.. module:: cmip_classes.py
+   :synopsis: Set of CIM v2 ontology type definitions
+   which are specific to the ES-DOC CMIP6 workflow.
+
+"""
+
+
+
 def cmip_dataset():
     """
     A CMIP dataset

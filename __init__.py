@@ -1,12 +1,8 @@
 """
 .. module:: cim.v2.__init__.py
-   :license: GPL/CeCIL
+   :license: MIT
    :platform: Unix, Windows
-   :synopsis: CIM v2 ontology schema.
-
-.. moduleauthor:: Mark Conway-Greenslade <momipsl@ipsl.jussieu.fr>
-
-
+   :synopsis: CIM v2 ontology schema (first post CMIP6 update)
 """
 from . import activity_classes
 from . import data_classes
@@ -29,10 +25,10 @@ from . import time as time_classes
 NAME = 'cim'
 
 # Ontology version.
-VERSION = '2.1.3beta'
+VERSION = '2.2.0.pre1'
 
 # Ontology doc string.
-DOC = 'ESDOC CIM ontology schema - version 2'
+DOC = 'ESDOC CIM ontology schema - version 2.2'
 
 
 def activity():

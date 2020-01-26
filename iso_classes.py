@@ -1,4 +1,9 @@
+# -*- coding: utf-8 -*-
+
 """
+.. module:: iso_classes.py
+   :synopsis: Set of CIM v2 ontology type definitions.
+   applying to the description of CMIP6 Data Reference Syntax quantities.
 
 This package is based on DQ_Lineage (ISO19115-2) as documented at
 http://wiki.esipfed.org/index.php/File:LI_Lineage-2.png.
@@ -76,15 +81,14 @@ def process_step():
 def processing():
     """
     Representation of the ISO19115 LE_Processing class
-
-    # Note that the algorithm definition has been adjusted to be more generic
-    # and less "instrument obsessed" than ISO19115. Name is an extension, and
-    # the identifier is simply a code string (id) ... but given there may be
-    # no identifier space for this processing step, it is made optional, rather
-    # than mandatory as in ISO. For export to ISO, the recommendation is to
-    # use the identifier of the CIM document which uses this class.
-
+    Note that the algorithm definition has been adjusted to be more generic
+    and less "instrument obsessed" than ISO19115. Name is an extension, and
+    the identifier is simply a code string (id) ... but given there may be
+    no identifier space for this processing step, it is made optional, rather
+    than mandatory as in ISO. For export to ISO, the recommendation is to
+    use the identifier of the CIM document which uses this class.
     """
+
     return {
         'type': 'class',
         'base': None,

@@ -3,6 +3,8 @@
 """
 .. module:: science_enums.py
    :synopsis: Set of CIM v2 ontology type definitions.
+   pertaining to the enumerations necessary for the
+   description of the scientific capabilities of models
 
 """
 
