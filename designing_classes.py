@@ -168,7 +168,7 @@ def numerical_experiment():
         'properties': [
             ('tier', 'int', '0.1',
                 "Relative importance of experiment within a MIP."),
-            ('related_experiments', 'designing.numerical_experiment', '0.N',
+            ('related_experiments', 'linked_to(designing.numerical_experiment)', '0.N',
                 "Other experiments which have defined relationships to this one."),
             ('governing_mips', 'linked_to(designing.project)', '0.N',
                 "MIP(s) overseeing experimental design protocol."),
