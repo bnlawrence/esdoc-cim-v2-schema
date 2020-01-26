@@ -177,7 +177,10 @@ def numerical_experiment():
             ('required_period', 'linked_to(designing.temporal_constraint)', '1.1',
                 "Constraint on start date and duration."),
             ('requirements', 'linked_to(designing.numerical_requirement)', '0.N',
-                "Additional requirements that conformant simulations need to satisfy.")
+                "Additional requirements that conformant simulations need to satisfy."),
+            #FIXME: if objectives become standalone, the strings should become linked_to(designing.objective).
+            ('related_objectives', 'str', '0.N',
+                "Set of objective identifiers (which should appear within the related experiments)")
         ],
         'constraints': [
             ('cardinality', 'duration', '0.0'),
@@ -280,8 +283,30 @@ def output_requirement():
     }
 
 
+def objective():
+    """
+    Describes a specific scientific objective within a project, and any necessary
+    outputs from the experiment needed to meet this objective.
+    """
+    return {
+        'type': 'class',
+        'base': None,
+        'is_abstract': False,
+        'is_document': True,
+        'properties': [
+            ('name','str','1.1','Name of this objective'),
+            ('description','str','0.1',' Short summary of the objective'),
+            ('required_outputs', 'data.variable_collection', '0.N',
+                'Set of required outputs associated with this objective'),
+            ('identifier','str','0.1',
+                'Provides a hook to which experiments can link')
+        ]
+    }
+
+
 def project():
-    """Describes a scientific project.
+    """
+    Describes a scientific project.
 
     """
     return {
@@ -289,9 +314,9 @@ def project():
         'base': 'activity.activity',
         'is_abstract': False,
         'properties': [
-            ('homepage', 'str', '0.1',
+            ('homepage', 'shared.online_resource', '0.1',
                 "Project homepage."),
-            ('objectives', 'str', '0.N',
+            ('objectives', 'linked_to(designing.objective)', '0.N',
                 "Project objectives."),
             ('previous_projects', 'linked_to(designing.project)', '0.N',
                 "Previous projects with similar aims."),
@@ -300,7 +325,7 @@ def project():
             ('governed_experiments', 'linked_to(designing.numerical_experiment)', '0.N',
                 "Experiments governed by this project."),
             ('sub_projects', 'linked_to(designing.project)', '0.N',
-                "Activities within the project with their own name and aim(s).")
+                "Activities within the project with their own name and aim(s)."),
         ],
         'constraints': [
             ('cardinality', 'description', '1.1')
@@ -372,3 +397,5 @@ def temporal_constraint():
             ('cardinality', 'additional_requirements', '0.0')
         ]
     }
+
+
