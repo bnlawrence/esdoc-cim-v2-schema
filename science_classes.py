@@ -37,7 +37,7 @@ def model():
                 "Software components which are linked together using a coupler to deliver this model."),
             ('coupler', 'software.coupling_framework', '0.1',
                 "Overarching coupling framework for model."),
-            ('internal_software_components', 'software.software_component', '0.N',
+            ('internal_software_components', 'linked_to(software.software_component)', '0.N',
                 "Software modules which together provide the functionality for this model."),
         ]
     }
@@ -85,10 +85,10 @@ def realm_coupling():
                  'The model realm providing the variable (e.g. ocean)'),
             ('target_realm', 'str', '1.1',
                  'The model realm receiving the variable (e.g. atmosphere)'),
-            ('time_frequency', 'int', '1.1',
-                 'The time frequency of the coupling (in seconds)'),
+            ('time_frequency', 'str', '1.1',
+                 'The time frequency of the coupling (e.g. 1 hour)'),
             ('coupling_details', 'str', '0.1',
-                 'Description of the coupling algorithm, coupler settings, and any other information (e.g. binlinear interpolation')
+                 'Description of the coupling algorithm, and any other information (e.g. binlinear interpolation')
         ]
     }
 
@@ -100,9 +100,9 @@ def topic():
         'type': 'class',
         'base': None,
         'is_abstract': False,
-        'pstr': ('{}', ('short_name',)),
+        'pstr': ('{}', ('name',)),
         'properties': [
-            ('citations', 'shared.citation', '0.N',
+            ('citations', 'linked_to(shared.citation)', '0.N',
                 "Set of pertinent citations."),
             ('description', 'str', '0.1',
                 "A description (derived from specialization)."),

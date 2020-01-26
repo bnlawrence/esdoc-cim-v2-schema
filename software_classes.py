@@ -20,7 +20,7 @@ def component_base():
         'is_abstract': True,
         'pstr': ('{}', ('name',)),
         'properties': [
-            ('citations', 'shared.citation', '0.N',
+            ('citations', 'linked_to(shared.citation)', '0.N',
                 "Set of pertinent citations."),
             ('canonical_id', 'str', '0.1',
                 "Vocabulary identifier, where this framework/component description was constructed via a controlled vocabulary."),
@@ -35,7 +35,7 @@ def component_base():
 
             ('development_history', 'software.development_path', '0.1',
                 "History of the development of this component."),
-            ('release_date', 'datetime', '0.1',
+            ('release_date', 'time.date_time', '0.1',
                 "The date of publication of the component code (as opposed to the date of publication of the metadata document, or the date of deployment of the model)."),
             ('repository', 'shared.online_resource', '0.1',
                 "Location of code for this component."),
@@ -59,7 +59,7 @@ def implementation():
         'is_abstract': False,
         'pstr': ('{}', ('name',)),
         'properties': [
-            ('citations', 'shared.citation', '0.N',
+            ('citations', 'linked_to(shared.citation)', '0.N',
                 "Set of pertinent citations."),
             ('canonical_id', 'str', '0.1',
                 "Vocabulary identifier, where this framework/component description was constructed via a controlled vocabulary."),
@@ -168,6 +168,7 @@ def software_component():
         'type': 'class',
         'base': 'software.component_base',
         'is_abstract': False,
+        'is_document': True,
         'properties': [
             ('composition', 'software.composition', '0.1',
                 "#FIXME."),
@@ -183,9 +184,9 @@ def software_component():
                 "Language the component is written in."),
             ('license', 'str', '0.1',
                 "The license held by this piece of software."),
-            ('sub_components', 'software.software_component', '0.N',
+            ('sub_components', 'linked_to(software.software_component)', '0.N',
                 "Internal software sub-components of this component."),
-            ('depends_on', 'software.software_component', '0.N',        # added dch/ssw 1016-0804
+            ('depends_on', 'linked_to(software.software_component)', '0.N',        # added dch/ssw 1016-0804
                 "The software components whose outputs are inputs to this software component."),
             # Would like to think about making this a stand-alone document
         ]
