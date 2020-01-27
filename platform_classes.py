@@ -41,7 +41,7 @@ def compute_pool():
                 "Name of compute pool within a machine."),
             ('number_of_nodes', 'int', '0.1',
                 "Number of nodes."),
-            ('vendor', 'shared.party', '0.1',
+            ('vendor', 'linked_to(shared.party)', '0.1',
                 'Supplier of compute hardware in this pool'),
             ('network_cards_per_node','platform.nic','0.N',
                 'Available network interfaces on node'),
@@ -67,7 +67,7 @@ def interconnect():
                 'Interconnect topology'),
             ('description', 'str', '0.1.',
                 'Technical description of interconnect layout'),
-            ('vendor', 'shared.party', '0.1',
+            ('vendor', 'linked_to(shared.party)', '0.1',
                 'Supplier of the interconnect')
             ]
             }
@@ -82,7 +82,7 @@ def nic():
         'pstr': ('{}', ('name',)),
         'properties': [
             ('name','str','1.1','Name of interface card'),
-            ('vendor','shared.party','0.1','Vendor of network card'),
+            ('vendor','linked_to(shared.party)','0.1','Vendor of network card'),
             ('bandwidth','shared.numeric','1.1','Bandwidth to network'),
 
         ]
@@ -203,7 +203,6 @@ def performance_detail():
         'type': 'class',
         'base': None,
         'is_abstract': False,
-        'pstr': ('{} (sypd:{})', ('name', 'simulated_years_per_day')),
         'is_document': False,
         'properties': [
             # CPMIP coupling, memory, I/O
@@ -228,8 +227,8 @@ def project_cost():
         'is_document': True,
         'pstr': ('Production: {}Y, {}', ('useful_years', 'useful_data')),
         'properties': [
-            ('activity', 'activity.activity', '1.1.', 'Project or Experiment of interest'),
-            ('platform', 'platform.machine', '1.1.', 'Machine used for project'),
+            ('activity', 'linked_to(activity.activity)', '1.1.', 'Project or Experiment of interest'),
+            ('platform', 'linked_to(platform.machine)', '1.1.', 'Machine used for project'),
             ('useful_years', 'int', '1.1', 'Number of useful years simulated (or to be simulated) during this project'),
             ('useful_data', 'shared.numeric', '0.1', 'Volume of useful data to be analysed'),
             ('useful_core_hours','int', '0.1', 'Number of core-hours used for useful simulations within the project'),

@@ -65,10 +65,10 @@ def axis_member():
             ('index', 'int', '1.1',
                 "The ensemble member index."),
             ('value', 'float', '0.1',
-                "If parameter varied, value thereof for this member."),
+                "If parameter varied; value for this member."),
             ('conformance', 'linked_to(activity.conformance)', '0.1',
                 "Conformance document for the target requirement that defines this member, if any."),
-            ('axis','linked_to(activity.ensemble_axis)','1.1',
+            ('axis', 'linked_to(activity.ensemble_axis)','1.1',
                 'The parent axis of this ensemble member')
         ]
     }
